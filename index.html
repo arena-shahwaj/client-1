@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arena</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary: #000000;
+        --secondary: #111111;
+        --accent: #222222;
+        --text: #ffffff;
+        --highlight: #333333;
+      }
+
+      body {
+        background-color: var(--primary);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* Header Styles */
+      header {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .video-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .video-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .video-slide.active {
+        opacity: 1;
+      }
+
+      .video-slide video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2;
+      }
+
+      /* Navbar Styles */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        position: relative;
+        z-index: 10;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+
+      .logo span {
+        color: #fff;
+      }
+
+      .enroll-btn {
+        background: var(--accent);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .enroll-btn:hover {
+        background: var(--highlight);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Header Content */
+      .header-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 80%;
+        z-index: 3;
+      }
+
+      .header-content h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+      }
+
+      .header-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--text);
+        padding: 15px 40px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .cta-button:hover {
+        background: var(--highlight);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Form Styles */
+      .form-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .form-container.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .form-box {
+        background: var(--secondary);
+        padding: 40px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        transform: translateY(-50px);
+        transition: transform 0.5s ease;
+        position: relative;
+      }
+
+      .form-container.active .form-box {
+        transform: translateY(0);
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .close-btn:hover {
+        transform: rotate(90deg);
+      }
+
+      .form-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        background: var(--primary);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent);
+        color: var(--text);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover {
+        background: var(--highlight);
+      }
+
+      .form-switch {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9rem;
+      }
+
+      .form-switch a {
+        color: var(--text);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      /* Section Styles */
+      section {
+        padding: 100px 5%;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 2.5rem;
+      }
+
+      /* Courses Section */
+      .courses-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .course-card {
+        background: var(--secondary);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.5s ease;
+        position: relative;
+      }
+
+      .course-video {
+        width: 100%;
+        height: 200px;
+        background: var(--accent);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .course-content {
+        padding: 20px;
+      }
+
+      .course-content h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      .course-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .course-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .course-card:hover .course-hover {
+        opacity: 1;
+      }
+
+      /* Student Work Section */
+      .student-work-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .work-card {
+        background: var(--secondary);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.5s ease;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+      }
+
+      .work-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--accent), transparent);
+        opacity: 0.3;
+      }
+
+      .student-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        z-index: 2;
+      }
+
+      .work-name {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        z-index: 2;
+      }
+
+      /* Why Us Section */
+      .why-us-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .why-us-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .why-us-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .why-us-content {
+        flex: 1;
+      }
+
+      .why-us-content h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .why-us-content p {
+        margin-bottom: 20px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .features-list {
+        list-style: none;
+      }
+
+      .features-list li {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .features-list li i {
+        margin-right: 10px;
+        color: var(--text);
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--secondary);
+        padding: 60px 5% 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--text);
+      }
+
+      .footer-column p,
+      .footer-column a {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 10px;
+        display: block;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-column a:hover {
+        color: var(--text);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: var(--accent);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        background: var(--highlight);
+        transform: translateY(-5px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+      }
+
+      /* Contact Icons */
+      .contact-icons {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 99;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--accent);
+        color: var(--text);
+        font-size: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .contact-icon:hover {
+        transform: scale(1.1);
+        background: var(--highlight);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1200px) {
+        .header-content h1 {
+          font-size: 3.5rem;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .header-content h1 {
+          font-size: 3rem;
+        }
+
+        .why-us-container {
+          flex-direction: column;
+        }
+
+        .why-us-image,
+        .why-us-content {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .header-content p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .contact-icons {
+          right: 20px;
+          bottom: 20px;
+        }
+
+        .contact-icon {
+          width: 45px;
+          height: 45px;
+          font-size: 1.3rem;
+        }
+
+        nav {
+          padding: 15px 5%;
+        }
+
+        .logo {
+          font-size: 24px;
+        }
+
+        .enroll-btn {
+          padding: 8px 20px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .header-content h1 {
+          font-size: 2rem;
+          margin-top: 20px;
+        }
+
+        .header-content p {
+          font-size: 0.9rem;
+        }
+
+        .courses-container,
+        .student-work-container {
+          grid-template-columns: 1fr;
+        }
+
+        .form-box {
+          padding: 30px 20px;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-button {
+          padding: 12px 30px;
+          font-size: 1rem;
+        }
+
+        section {
+          padding: 70px 5%;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .header-content h1 {
+          font-size: 1.8rem;
+          margin-top: 50px;
+        }
+
+        .courses-container {
+          grid-template-columns: 1fr;
+        }
+
+        .course-card {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="video-slider">
+        <div class="video-slide active">
+          <video autoplay muted loop>
+            <source
+              src="https://www.pexels.com/download/video/34149284/"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div class="video-slide">
+          <video autoplay muted loop>
+            <source
+              src="https://www.pexels.com/download/video/856997/"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div class="video-slide">
+          <video autoplay muted loop>
+            <source
+              src="https://www.pexels.com/download/video/4990246/"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+        <div class="video-overlay"></div>
+      </div>
+
+      <nav>
+        <div class="logo">Arena</div>
+        <button class="enroll-btn" id="enrollBtn">Enroll Now</button>
+      </nav>
+
+      <div class="header-content">
+        <h1 data-aos="fade-down" data-aos-duration="1000">
+          Transform Your Future With Online Learning
+        </h1>
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          Join thousands of students mastering new skills with our expert-led
+          courses
+        </p>
+        <a
+          href="#"
+          class="cta-button"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="400"
+          >Explore Courses</a
+        >
+      </div>
+    </header>
+
+    <!-- Enroll Form -->
+    <div class="form-container" id="enrollForm">
+      <div class="form-box">
+        <button class="close-btn" id="closeEnroll">&times;</button>
+        <h2 class="form-title">Enroll Now</h2>
+        <form>
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="course">Select Course</label>
+            <input type="text" id="course" placeholder="Enter course name" />
+          </div>
+          <button type="submit" class="submit-btn">Enroll Now</button>
+        </form>
+        <div class="form-switch">
+          Already have an account? <a id="switchToLogin">Login here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-container" id="loginForm">
+      <div class="form-box">
+        <button class="close-btn" id="closeLogin">&times;</button>
+        <h2 class="form-title">Login</h2>
+        <form>
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+          </div>
+          <button type="submit" class="submit-btn">Login</button>
+        </form>
+        <div class="form-switch">
+          Don't have an account? <a id="switchToEnroll">Enroll now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Courses Section -->
+    <section id="courses">
+      <h2 class="section-title" data-aos="fade-up">Our Courses</h2>
+      <div class="courses-container">
+        <!-- Course 1 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Web Development</h3>
+            <p>
+              Master HTML, CSS, JavaScript and modern frameworks to build
+              responsive websites.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Complete web development course with hands-on projects and expert
+              guidance.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Data Science</h3>
+            <p>
+              Learn Python, statistics, machine learning and data visualization
+              techniques.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Become a data scientist with our comprehensive curriculum and
+              real-world projects.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Digital Marketing</h3>
+            <p>
+              Master SEO, social media marketing, content strategy and
+              analytics.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Learn to create effective digital marketing campaigns that drive
+              results.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Graphic Design</h3>
+            <p>
+              Learn design principles, Adobe Creative Suite, and create stunning
+              visuals.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Develop your creative skills and build a professional design
+              portfolio.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Mobile App Development</h3>
+            <p>Build iOS and Android apps using React Native and Flutter.</p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Create cross-platform mobile applications with modern development
+              tools.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 6 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>UI/UX Design</h3>
+            <p>
+              Master user research, wireframing, prototyping and usability
+              testing.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Design intuitive and engaging user experiences for digital
+              products.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 7 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Business Analytics</h3>
+            <p>
+              Learn to analyze business data and make data-driven decisions.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Transform raw data into actionable insights for business growth.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 8 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Photography</h3>
+            <p>
+              Master camera techniques, composition, lighting and photo editing.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Capture stunning images and develop your unique photographic
+              style.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 9 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Content Writing</h3>
+            <p>
+              Learn to create engaging content for websites, blogs and social
+              media.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Develop your writing skills and build a portfolio of published
+              work.
+            </p>
+          </div>
+        </div>
+
+        <!-- Course 10 -->
+        <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="course-video">
+            <video autoplay muted loop>
+              <source src="" type="video/mp4" />
+            </video>
+          </div>
+          <div class="course-content">
+            <h3>Project Management</h3>
+            <p>
+              Master Agile, Scrum, and traditional project management
+              methodologies.
+            </p>
+          </div>
+          <div class="course-hover">
+            <p>
+              Lead successful projects from initiation to completion with
+              confidence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Work Section -->
+    <section id="student-work">
+      <h2 class="section-title" data-aos="fade-up">Student Work</h2>
+      <div class="student-work-container">
+        <!-- Work 1 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="student-name">Amit</div>
+          <div class="work-name">E-commerce Website</div>
+        </div>
+
+        <!-- Work 2 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="student-name">Sameer</div>
+          <div class="work-name">Graphic design</div>
+        </div>
+
+        <!-- Work 3 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="student-name">Sandeep</div>
+          <div class="work-name">App design</div>
+        </div>
+
+        <!-- Work 4 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="student-name">Gurpret</div>
+          <div class="work-name">Brand Identity Design</div>
+        </div>
+
+        <!-- Work 5 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="student-name">Aryan</div>
+          <div class="work-name">VFX</div>
+        </div>
+
+        <!-- Work 6 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="student-name">Shivam</div>
+          <div class="work-name">Social Media Post</div>
+        </div>
+
+        <!-- Work 7 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="student-name">Arbaj</div>
+          <div class="work-name">Graphic Design</div>
+        </div>
+
+        <!-- Work 8 -->
+        <div class="work-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="student-name">Shahwaj</div>
+          <div class="work-name">Website</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us">
+      <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+      <div class="why-us-container">
+        <div class="why-us-image" data-aos="fade-right">
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            alt="Students learning together"
+          />
+        </div>
+        <div class="why-us-content" data-aos="fade-left">
+          <h3>Excellence in Online Education</h3>
+          <p>
+            We are committed to providing high-quality education that is
+            accessible, engaging, and transformative. Our innovative approach
+            combines expert instruction with cutting-edge technology.
+          </p>
+          <p>
+            With over 10,000 successful graduates, we have a proven track record
+            of helping students achieve their career goals.
+          </p>
+          <ul class="features-list">
+            <li>
+              <i class="fas fa-check-circle"></i> Expert instructors with
+              industry experience
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Hands-on projects and
+              real-world applications
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Flexible learning schedule
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Career support and job
+              placement assistance
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Active community of learners
+              and alumni
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column" data-aos="fade-up">
+          <h3>About Us</h3>
+          <p>
+            Arena is a leading online education platform dedicated to providing
+            high-quality courses to learners worldwide.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+          <h3>Quick Links</h3>
+          <a href="#">Home</a>
+          <a href="#courses">Courses</a>
+          <a href="#student-work">Student Work</a>
+          <a href="#why-us">Why Us</a>
+        </div>
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Western road Saket, Delhi</p>
+          <p><i class="fas fa-phone"></i> +91 999 123-4567</p>
+          <p><i class="fas fa-envelope"></i> arenainfor@123.com</p>
+        </div>
+        <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
+          <h3>Newsletter</h3>
+          <p>
+            Subscribe to our newsletter for the latest updates and course
+            offerings.
+          </p>
+          <div class="form-group">
+            <input type="email" placeholder="Your email address" />
+          </div>
+          <button class="submit-btn">Subscribe</button>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 Arena. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Contact Icons -->
+    <div class="contact-icons">
+      <a href="tel:+15551234567" class="contact-icon">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="https://wa.me/15551234567" class="contact-icon">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+      });
+
+      // Form Handling
+      const enrollBtn = document.getElementById("enrollBtn");
+      const enrollForm = document.getElementById("enrollForm");
+      const loginForm = document.getElementById("loginForm");
+      const closeEnroll = document.getElementById("closeEnroll");
+      const closeLogin = document.getElementById("closeLogin");
+      const switchToLogin = document.getElementById("switchToLogin");
+      const switchToEnroll = document.getElementById("switchToEnroll");
+
+      // Open enroll form
+      enrollBtn.addEventListener("click", () => {
+        enrollForm.classList.add("active");
+      });
+
+      // Close enroll form
+      closeEnroll.addEventListener("click", () => {
+        enrollForm.classList.remove("active");
+      });
+
+      // Close login form
+      closeLogin.addEventListener("click", () => {
+        loginForm.classList.remove("active");
+      });
+
+      // Switch to login form
+      switchToLogin.addEventListener("click", () => {
+        enrollForm.classList.remove("active");
+        loginForm.classList.add("active");
+      });
+
+      // Switch to enroll form
+      switchToEnroll.addEventListener("click", () => {
+        loginForm.classList.remove("active");
+        enrollForm.classList.add("active");
+      });
+
+      // Close forms when clicking outside
+      window.addEventListener("click", (e) => {
+        if (e.target === enrollForm) {
+          enrollForm.classList.remove("active");
+        }
+        if (e.target === loginForm) {
+          loginForm.classList.remove("active");
+        }
+      });
+
+      // Video Slider
+      const videoSlides = document.querySelectorAll(".video-slide");
+      let currentSlide = 0;
+
+      function showSlide(n) {
+        videoSlides[currentSlide].classList.remove("active");
+        currentSlide = (n + videoSlides.length) % videoSlides.length;
+        videoSlides[currentSlide].classList.add("active");
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      // Change slide every 4 seconds
+      setInterval(nextSlide, 4000);
+
+      // Auto open enroll form when page loads
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          enrollForm.classList.add("active");
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
