@@ -966,59 +966,49 @@
       /*Placement Partner*/
 
       .partners-section {
-        padding: 80px 5%;
-        overflow: hidden;
-        position: relative;
+        padding: 40px 0;
       }
 
-      .partners-section .section-title {
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
         text-align: center;
-        margin-bottom: 60px;
-        font-size: 2.5rem;
-        color: var(--text);
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: #fff;
       }
 
       .partners-container {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
+        margin: 40px 0;
       }
 
       .partner-track {
         display: flex;
         width: max-content;
-        position: relative;
         margin-bottom: 30px;
       }
 
       .partner-track-1 {
-        animation: scroll-left 40s linear infinite;
+        animation: scroll-right 60s linear infinite;
       }
 
       .partner-track-2 {
-        animation: scroll-right 35s linear infinite;
+        animation: scroll-left 55s linear infinite;
       }
 
-      .partner-item {
-        padding: 15px 30px;
-        margin: 0 15px;
-        background: var(--accent);
-        border-radius: 8px;
-        white-space: nowrap;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: var(--text);
+      .partner-logo {
+        flex-shrink: 0;
+        width: 110px;
+        height: 80px;
+        margin: 0 16px;
+        object-fit: contain;
       }
 
-      .partner-item:hover {
-        background: var(--highlight);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      @keyframes scroll-left {
+      @keyframes scroll-right {
         0% {
           transform: translateX(0);
         }
@@ -1027,7 +1017,7 @@
         }
       }
 
-      @keyframes scroll-right {
+      @keyframes scroll-left {
         0% {
           transform: translateX(-50%);
         }
@@ -1217,30 +1207,11 @@
         .form-box {
           padding: 30px 20px;
         }
-      }
 
-      @media (max-width: 768px) {
-        .partners-section {
-          padding: 60px 5%;
-        }
-
-        .partners-section .section-title {
-          font-size: 2rem;
-          margin-bottom: 40px;
-        }
-
-        .partner-item {
-          padding: 12px 20px;
-          margin: 0 10px;
-          font-size: 1rem;
-        }
-
-        .partner-track-1 {
-          animation: scroll-left 30s linear infinite;
-        }
-
-        .partner-track-2 {
-          animation: scroll-right 25s linear infinite;
+        .partner-logo {
+          width: 120px;
+          height: 60px;
+          margin: 0 6px;
         }
       }
 
@@ -1278,43 +1249,6 @@
         .form-container {
           padding: 10px;
         }
-      }
-
-      .partners-section .section-title {
-        font-size: 1.8rem;
-
-        .partner-item {
-          padding: 10px 15px;
-          margin: 0 8px;
-          font-size: 0.9rem;
-        }
-
-        .partner-track {
-          margin-bottom: 20px;
-        }
-      }
-
-      @media (max-width: 400px) {
-        .header-content h1 {
-          font-size: 1.8rem;
-        }
-
-        .courses-container {
-          grid-template-columns: 1fr;
-        }
-
-        .course-card {
-          margin-bottom: 20px;
-        }
-
-        .form-box {
-          padding: 20px 15px;
-        }
-      }
-      .partner-item {
-        padding: 8px 12px;
-        margin: 0 6px;
-        font-size: 0.85rem;
       }
 
       /* Prevent horizontal scroll */
@@ -1812,167 +1746,437 @@
           />
         </div>
         <div class="why-us-content" data-aos="fade-left">
-          <h3>Excellence in Online Education</h3>
+          <h3>Redefining creative Education with Generative AI</h3>
           <p>
-            We are committed to providing high-quality education that is
-            accessible, engaging, and transformative. Our innovative approach
-            combines expert instruction with cutting-edge technology.
+            <b> DesignEngine</b> is a new-age startup transforming
+            <b>creative education</b> in India. We deliver
+            <b>AI-powered, skill-first training</b> across <b>Animation</b>,
+            <b>VFX</b>, <b>Game Design, and Video Editing</b> - creating a
+            generation of
+            <b>job-ready, portfolio-driven creative professionals.</b>
           </p>
           <p>
-            With over 10,000 successful graduates, we have a proven track record
+            With over 5000+ successful graduates, we have a proven track record
             of helping students achieve their career goals.
           </p>
           <ul class="features-list">
             <li>
-              <i class="fas fa-check-circle"></i> Expert instructors with
-              industry experience
+              <i class="fas fa-check-circle"></i> Generative AI at the Core
+            </li>
+            <li><i class="fas fa-check-circle"></i> Indsutry-Led curriculum</li>
+            <li>
+              <i class="fas fa-check-circle"></i> Project-Based Methodology
+            </li>
+            <li><i class="fas fa-check-circle"></i> Job-Ready Portfolios</li>
+            <li>
+              <i class="fas fa-check-circle"></i>Internship & Placement Support
             </li>
             <li>
-              <i class="fas fa-check-circle"></i> Hands-on projects and
-              real-world applications
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Flexible learning schedule
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Career support and job
-              placement assistance
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Active community of learners
-              and alumni
+              <i class="fas fa-check-circle"></i>Institutional Partnership
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="partners-section" data-aos="fade-up">
+    <section class="partners-section">
       <div class="container">
         <h2 class="section-title">Our Placement Partners</h2>
         <div class="partners-container">
           <!-- First Row - Scrolls Right to Left -->
           <div class="partner-track partner-track-1">
-            <div class="partner-item">Boult Audio</div>
-            <div class="partner-item">Adda24/7</div>
-            <div class="partner-item">Blinkit</div>
-            <div class="partner-item">Care Health Insurance</div>
-            <div class="partner-item">Cosmic Kitchen pvt Ltd (choko la)</div>
-            <div class="partner-item">Social Codify</div>
-            <div class="partner-item">Zamun</div>
-            <div class="partner-item">RentOK</div>
-            <div class="partner-item">Mobisoft Labs</div>
-            <div class="partner-item">Aromatic Garden Essence</div>
-            <div class="partner-item">SPYNE</div>
-            <div class="partner-item">OneBlac</div>
-            <div class="partner-item">Hindustan Times</div>
-            <div class="partner-item">29 Media</div>
-            <div class="partner-item">The Minute Academy</div>
-            <div class="partner-item">The Cure stone</div>
-            <div class="partner-item">Ken Reasearch</div>
-            <div class="partner-item">Prop Future AI</div>
-            <div class="partner-item">BE Digitech</div>
-            <div class="partner-item">OnlyBigcars</div>
-            <div class="partner-item">BigStep Technology</div>
-            <div class="partner-item">Dropbox</div>
-            <div class="partner-item">Shopify</div>
-            <div class="partner-item">Stripe</div>
-            <div class="partner-item">GitHub</div>
-            <!-- Duplicate for seamless loop -->
+            <img
+              src="img_bank/boult.jpeg"
+              alt="Boult Audio"
+              class="partner-logo"
+            />
+            <img src="img_bank/add.png" alt="Adda24/7" class="partner-logo" />
+            <img
+              src="img_bank/blinkit.png"
+              alt="Blinkit"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/care_health_insurance.png"
+              alt="Care Health Insurance"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cosmic_kitchen.jpeg"
+              alt="Cosmic Kitchen"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/social_codify.png"
+              alt="Social Codify"
+              class="partner-logo"
+            />
+            <img src="img_bank/zamun.jpeg" alt="Zamun" class="partner-logo" />
+            <img src="img_bank/rentok.jpeg" alt="RentOK" class="partner-logo" />
+            <img
+              src="img_bank/mobisoft_labs.png"
+              alt="Mobisoft Labs"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/aromatic_assenece.jpeg"
+              alt="Aromatic Garden Essence"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/spyne_logo.png"
+              alt="SPYNE"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/oneblac.png"
+              alt="OneBlac"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/hindustan.png"
+              alt="Hindustan Times"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/29_media.png"
+              alt="29 Media"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/one minute_academy.png"
+              alt="The Minute Academy"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cure_stone.png"
+              alt="The Cure Stone"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/ken_reasearch.png"
+              alt="Ken Research"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/prop_future_ai.png"
+              alt="Prop Future AI"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/be_digitech.png"
+              alt="BE Digitech"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/only_big_cars.png"
+              alt="OnlyBigcars"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/bigstep_technology.jpeg"
+              alt="BigStep Technology"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/dropbox.png"
+              alt="Dropbox"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/shopify.png"
+              alt="Shopify"
+              class="partner-logo"
+            />
+            <img src="img_bank/strip.png" alt="Stripe" class="partner-logo" />
+            <img
+              src="img_bank/github_logo.png"
+              alt="GitHub"
+              class="partner-logo"
+            />
 
-            <div class="partner-item">Boult Audio</div>
-            <div class="partner-item">Adda24/7</div>
-            <div class="partner-item">Blinkit</div>
-            <div class="partner-item">Care Health Insurance</div>
-            <div class="partner-item">Cosmic Kitchen pvt Ltd (choko la)</div>
-            <div class="partner-item">Social Codify</div>
-            <div class="partner-item">Zamun</div>
-            <div class="partner-item">RentOK</div>
-            <div class="partner-item">Mobisoft Labs</div>
-            <div class="partner-item">Aromatic Garden Essence</div>
-            <div class="partner-item">SPYNE</div>
-            <div class="partner-item">OneBlac</div>
-            <div class="partner-item">Hindustan Times</div>
-            <div class="partner-item">29 Media</div>
-            <div class="partner-item">The Minute Academy</div>
-            <div class="partner-item">The Cure stone</div>
-            <div class="partner-item">Ken Reasearch</div>
-            <div class="partner-item">Prop Future AI</div>
-            <div class="partner-item">BE Digitech</div>
-            <div class="partner-item">OnlyBigcars</div>
-            <div class="partner-item">BigStep Technology</div>
-            <div class="partner-item">Dropbox</div>
-            <div class="partner-item">Shopify</div>
-            <div class="partner-item">Stripe</div>
-            <div class="partner-item">GitHub</div>
+            <!-- Duplicate for seamless loop -->
+            <img
+              src="img_bank/boult.jpeg"
+              alt="Boult Audio"
+              class="partner-logo"
+            />
+            <img src="img_bank/add.png" alt="Adda24/7" class="partner-logo" />
+            <img
+              src="img_bank/blinkit.png"
+              alt="Blinkit"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/care_health_insurance.png"
+              alt="Care Health Insurance"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cosmic_kitchen.jpeg"
+              alt="Cosmic Kitchen"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/social_codify.png"
+              alt="Social Codify"
+              class="partner-logo"
+            />
+            <img src="img_bank/zamun.jpeg" alt="Zamun" class="partner-logo" />
+            <img src="img_bank/rentok.jpeg" alt="RentOK" class="partner-logo" />
+            <img
+              src="img_bank/mobisoft_labs.png"
+              alt="Mobisoft Labs"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/aromatic_assenece.jpeg"
+              alt="Aromatic Garden Essence"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/spyne_logo.png"
+              alt="SPYNE"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/oneblac.png"
+              alt="OneBlac"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/hindustan.png"
+              alt="Hindustan Times"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/29_media.png"
+              alt="29 Media"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/one minute_academy.png"
+              alt="The Minute Academy"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cure_stone.png"
+              alt="The Cure Stone"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/ken_reasearch.png"
+              alt="Ken Research"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/prop_future_ai.png"
+              alt="Prop Future AI"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/be_digitech.png"
+              alt="BE Digitech"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/only_big_cars.png"
+              alt="OnlyBigcars"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/bigstep_technology.jpeg"
+              alt="BigStep Technology"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/dropbox.png"
+              alt="Dropbox"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/shopify.png"
+              alt="Shopify"
+              class="partner-logo"
+            />
+            <img src="img_bank/strip.png" alt="Stripe" class="partner-logo" />
+            <img
+              src="img_bank/github_logo.png"
+              alt="GitHub"
+              class="partner-logo"
+            />
           </div>
 
           <!-- Second Row - Scrolls Left to Right -->
           <div class="partner-track partner-track-2">
-            <div class="partner-item">Dell</div>
-            <div class="partner-item">HP</div>
-            <div class="partner-item">Samsung</div>
-            <div class="partner-item">Sony</div>
-            <div class="partner-item">Nvidia</div>
-            <div class="partner-item">AMD</div>
-            <div class="partner-item">Qualcomm</div>
-            <div class="partner-item">Intel</div>
-            <div class="partner-item">Deloitte</div>
-            <div class="partner-item">Accenture</div>
-            <div class="partner-item">Infosys</div>
-            <div class="partner-item">TCS</div>
-            <div class="partner-item">Wipro</div>
-            <div class="partner-item">HCL</div>
-            <div class="partner-item">Capgemini</div>
-            <div class="partner-item">Cognizant</div>
-            <div class="partner-item">Tech Mahindra</div>
-            <div class="partner-item">Mindtree</div>
-            <div class="partner-item">L&T Infotech</div>
-            <div class="partner-item">Mphasis</div>
-            <div class="partner-item">Hexaware</div>
-            <div class="partner-item">Persistent</div>
-            <div class="partner-item">Zensar</div>
-            <div class="partner-item">Cyient</div>
-            <div class="partner-item">KPIT</div>
+            <img src="img_bank/Dell.png" alt="Dell" class="partner-logo" />
+            <img src="img_bank/hp.png" alt="HP" class="partner-logo" />
+            <img
+              src="img_bank/samsung.png"
+              alt="Samsung"
+              class="partner-logo"
+            />
+            <img src="img_bank/sony.png" alt="Sony" class="partner-logo" />
+            <img src="img_bank/nvidia.png" alt="Nvidia" class="partner-logo" />
+            <img src="img_bank/amd.png" alt="AMD" class="partner-logo" />
+            <img
+              src="img_bank/qualcomon.png"
+              alt="Qualcomm"
+              class="partner-logo"
+            />
+            <img src="img_bank/intel.png" alt="Intel" class="partner-logo" />
+            <img
+              src="img_bank/deloite.png"
+              alt="Deloitte"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/accenture.png"
+              alt="Accenture"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/infosys.png"
+              alt="Infosys"
+              class="partner-logo"
+            />
+            <img src="img_bank/tcs.png" alt="TCS" class="partner-logo" />
+            <img src="img_bank/wipro.png" alt="Wipro" class="partner-logo" />
+            <img src="img_bank/hcl.png" alt="HCL" class="partner-logo" />
+            <img
+              src="img_bank/cap_gemeni.png"
+              alt="Capgemini"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cognizant.jpeg"
+              alt="Cognizant"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/tech_mahindra.jpeg"
+              alt="Tech Mahindra"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/mindtree.png"
+              alt="Mindtree"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/l_t_infotech.jpeg"
+              alt="L&T Infotech"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/mpahsis.png"
+              alt="Mphasis"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/hexware.png"
+              alt="Hexaware"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/persistent.png"
+              alt="Persistent"
+              class="partner-logo"
+            />
+            <img src="img_bank/zensar.jpeg" alt="Zensar" class="partner-logo" />
+            <img src="img_bank/cyient.jpeg" alt="Cyient" class="partner-logo" />
+            <img src="img_bank/kpit.png" alt="KPIT" class="partner-logo" />
+
             <!-- Duplicate for seamless loop -->
-            <div class="partner-item">Dell</div>
-            <div class="partner-item">HP</div>
-            <div class="partner-item">Samsung</div>
-            <div class="partner-item">Sony</div>
-            <div class="partner-item">Nvidia</div>
-            <div class="partner-item">AMD</div>
-            <div class="partner-item">Qualcomm</div>
-            <div class="partner-item">Intel</div>
-            <div class="partner-item">Deloitte</div>
-            <div class="partner-item">Accenture</div>
-            <div class="partner-item">Infosys</div>
-            <div class="partner-item">TCS</div>
-            <div class="partner-item">Wipro</div>
-            <div class="partner-item">HCL</div>
-            <div class="partner-item">Capgemini</div>
-            <div class="partner-item">Cognizant</div>
-            <div class="partner-item">Tech Mahindra</div>
-            <div class="partner-item">Mindtree</div>
-            <div class="partner-item">L&T Infotech</div>
-            <div class="partner-item">Mphasis</div>
-            <div class="partner-item">Hexaware</div>
-            <div class="partner-item">Persistent</div>
-            <div class="partner-item">Zensar</div>
-            <div class="partner-item">Cyient</div>
-            <div class="partner-item">KPIT</div>
+            <img src="img_bank/Dell.png" alt="Dell" class="partner-logo" />
+            <img src="img_bank/hp.png" alt="HP" class="partner-logo" />
+            <img
+              src="img_bank/samsung.png"
+              alt="Samsung"
+              class="partner-logo"
+            />
+            <img src="img_bank/sony.png" alt="Sony" class="partner-logo" />
+            <img src="img_bank/nvidia.png" alt="Nvidia" class="partner-logo" />
+            <img src="img_bank/amd.png" alt="AMD" class="partner-logo" />
+            <img
+              src="img_bank/qualcomon.png"
+              alt="Qualcomm"
+              class="partner-logo"
+            />
+            <img src="img_bank/intel.png" alt="Intel" class="partner-logo" />
+            <img
+              src="img_bank/deloite.png"
+              alt="Deloitte"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/accenture.png"
+              alt="Accenture"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/infosys.png"
+              alt="Infosys"
+              class="partner-logo"
+            />
+            <img src="img_bank/tcs.png" alt="TCS" class="partner-logo" />
+            <img src="img_bank/wipro.png" alt="Wipro" class="partner-logo" />
+            <img src="img_bank/hcl.png" alt="HCL" class="partner-logo" />
+            <img
+              src="img_bank/cap_gemeni.png"
+              alt="Capgemini"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/cognizant.jpeg"
+              alt="Cognizant"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/tech_mahindra.jpeg"
+              alt="Tech Mahindra"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/mindtree.png"
+              alt="Mindtree"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/l_t_infotech.jpeg"
+              alt="L&T Infotech"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/mpahsis.png"
+              alt="Mphasis"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/hexware.png"
+              alt="Hexaware"
+              class="partner-logo"
+            />
+            <img
+              src="img_bank/persistent.png"
+              alt="Persistent"
+              class="partner-logo"
+            />
+            <img src="img_bank/zensar.jpeg" alt="Zensar" class="partner-logo" />
+            <img src="img_bank/cyient.jpeg" alt="Cyient" class="partner-logo" />
+            <img src="img_bank/kpit.png" alt="KPIT" class="partner-logo" />
           </div>
         </div>
       </div>
     </section>
-
     <!-- Footer -->
     <footer>
       <div class="footer-content">
         <div class="footer-column" data-aos="fade-up">
           <h3>About Us</h3>
           <p>
-            DesignEngine is a leading online education platform dedicated to
-            providing high-quality courses to learners worldwide.
+            DesignEngine is a new-age startup transforming
+            <b>creative education</b> in India.
           </p>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1990,11 +2194,8 @@
         </div>
         <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
           <h3>Contact Info</h3>
-          <p>
-            <i class="fas fa-map-marker-alt"></i> 123 Education Street, Learn
-            City
-          </p>
-          <p><i class="fas fa-phone"></i> +1 555 123-4567</p>
+          <p><i class="fas fa-map-marker-alt"></i> 11007 Saket, Delhi</p>
+          <p><i class="fas fa-phone"></i> +91 99911007-4567</p>
           <p><i class="fas fa-envelope"></i> info@DesignEngine.com</p>
         </div>
         <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
@@ -2016,7 +2217,7 @@
 
     <!-- Contact Icons -->
     <div class="contact-icons">
-      <a href="tel:+15551234567" class="contact-icon">
+      <a href="tel:+915551285607" class="contact-icon">
         <i class="fas fa-phone"></i>
       </a>
       <a href="https://wa.me/15551234567" class="contact-icon">
