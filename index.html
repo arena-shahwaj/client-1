@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arena</title>
+    <title>DesignEngine</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -22,13 +22,23 @@
         --secondary: #111111;
         --accent: #222222;
         --text: #ffffff;
-        --highlight: #333333;
+        --highlight: darkblue;
+      }
+
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+        background-color: var(--primary);
+        color: var(--text);
       }
 
       body {
         background-color: var(--primary);
         color: var(--text);
         overflow-x: hidden;
+        width: 100%;
+        position: relative;
       }
 
       /* Header Styles */
@@ -85,6 +95,7 @@
         padding: 20px 5%;
         position: relative;
         z-index: 10;
+        width: 100%;
       }
 
       .logo {
@@ -106,6 +117,7 @@
         cursor: pointer;
         font-weight: 600;
         transition: all 0.3s ease;
+        white-space: nowrap;
       }
 
       .enroll-btn:hover {
@@ -123,6 +135,8 @@
         text-align: center;
         width: 80%;
         z-index: 3;
+        max-width: 100%;
+        padding: 0 20px;
       }
 
       .header-content h1 {
@@ -154,7 +168,7 @@
         box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
       }
 
-      /* Form Styles */
+      /* Form Styles*/
       .form-container {
         position: fixed;
         top: 0;
@@ -169,6 +183,8 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        padding: 20px;
+        box-sizing: border-box;
       }
 
       .form-container.active {
@@ -180,12 +196,13 @@
         background: var(--secondary);
         padding: 40px;
         border-radius: 10px;
-        width: 90%;
+        width: 100%;
         max-width: 500px;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         transform: translateY(-50px);
         transition: transform 0.5s ease;
         position: relative;
+        box-sizing: border-box;
       }
 
       .form-container.active .form-box {
@@ -202,6 +219,7 @@
         font-size: 24px;
         cursor: pointer;
         transition: transform 0.3s ease;
+        z-index: 101;
       }
 
       .close-btn:hover {
@@ -216,6 +234,7 @@
 
       .form-group {
         margin-bottom: 20px;
+        width: 100%;
       }
 
       .form-group label {
@@ -232,6 +251,7 @@
         border-radius: 5px;
         color: var(--text);
         font-size: 1rem;
+        box-sizing: border-box;
       }
 
       .form-group input:focus {
@@ -272,6 +292,8 @@
       /* Section Styles */
       section {
         padding: 100px 5%;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .section-title {
@@ -280,11 +302,368 @@
         font-size: 2.5rem;
       }
 
+      /* OUR Mission Section*/
+      .mission-section-compact {
+        padding: 60px 5%;
+        background: var(--primary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /*Title */
+      .section-title-center {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        background: linear-gradient(45deg, #fff, #ccc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+      }
+
+      .mission-content-compact {
+        display: flex;
+        align-items: stretch;
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+        min-height: 350px;
+      }
+
+      .mission-visual-compact {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .mission-text-compact {
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      .text-content-wrapper-compact {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Visual Elements - Compact */
+      .visual-container-compact {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .mission-image-compact {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .mission-image-compact img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .image-overlay-compact {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(0, 0, 0, 0.6),
+          rgba(34, 34, 34, 0.4)
+        );
+      }
+
+      /* Floating Elements - Compact */
+      .floating-elements-compact {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+      }
+
+      .element-compact {
+        position: absolute;
+        background: var(--accent);
+        padding: 10px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        animation: float-element-compact 6s infinite ease-in-out;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: 45px;
+        height: 45px;
+      }
+
+      .element-compact i {
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .element-1 {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .element-2 {
+        top: 65%;
+        left: 80%;
+        animation-delay: 2s;
+      }
+
+      .element-3 {
+        top: 40%;
+        left: 85%;
+        animation-delay: 4s;
+      }
+
+      /* Text Content - Compact */
+      .mission-statement-compact {
+        margin-bottom: 30px;
+      }
+
+      .mission-statement-compact p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .highlight-compact {
+        background: linear-gradient(45deg, var(--accent), var(--highlight));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+      }
+
+      /* Mission Features - Compact */
+      .mission-features-compact {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .feature-compact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        background: var(--secondary);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex: 1;
+      }
+
+      .feature-compact:hover {
+        transform: translateY(-5px);
+        background: var(--accent);
+      }
+
+      .feature-icon-compact {
+        width: 50px;
+        height: 50px;
+        background: var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-compact:hover .feature-icon-compact {
+        background: var(--highlight);
+        transform: scale(1.1);
+      }
+
+      .feature-content-compact h3 {
+        font-size: 1rem;
+        color: var(--text);
+        margin: 0;
+      }
+
+      /* Animations - Compact */
+      @keyframes float-element-compact {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-8px) translateX(3px);
+        }
+        50% {
+          transform: translateY(3px) translateX(-3px);
+        }
+        75% {
+          transform: translateY(-3px) translateX(8px);
+        }
+      }
+
+      /* Responsive Styles - Compact */
+      @media (max-width: 992px) {
+        .mission-content-compact {
+          flex-direction: column;
+          gap: 30px;
+          min-height: auto;
+        }
+
+        .section-title-center {
+          margin-bottom: 40px;
+          font-size: 2.2rem;
+        }
+
+        .visual-container-compact {
+          min-height: 250px;
+          height: 250px;
+        }
+
+        .mission-text-compact {
+          height: auto;
+        }
+
+        .text-content-wrapper-compact {
+          height: auto;
+        }
+
+        .mission-statement-compact {
+          margin-bottom: 25px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .mission-section-compact {
+          padding: 50px 5%;
+        }
+
+        .section-title-center {
+          font-size: 2rem;
+          margin-bottom: 30px;
+        }
+
+        .visual-container-compact {
+          min-height: 220px;
+          height: 220px;
+        }
+
+        .mission-statement-compact p {
+          font-size: 1rem;
+        }
+
+        .mission-features-compact {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .feature-compact {
+          flex-direction: row;
+          text-align: left;
+          gap: 15px;
+        }
+
+        .feature-icon-compact {
+          margin-bottom: 0;
+          flex-shrink: 0;
+        }
+
+        .element-compact {
+          padding: 8px;
+          width: 40px;
+          height: 40px;
+        }
+
+        .element-compact i {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .section-title-center {
+          font-size: 1.8rem;
+        }
+
+        .visual-container-compact {
+          min-height: 200px;
+          height: 200px;
+        }
+
+        .mission-statement-compact p {
+          font-size: 0.95rem;
+        }
+
+        .feature-compact {
+          padding: 12px;
+        }
+
+        .feature-icon-compact {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+
+        .feature-content-compact h3 {
+          font-size: 0.9rem;
+        }
+
+        .element-compact {
+          width: 35px;
+          height: 35px;
+        }
+
+        .element-compact i {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .mission-section-compact {
+          padding: 40px 5%;
+        }
+
+        .section-title-center {
+          font-size: 1.6rem;
+        }
+
+        .visual-container-compact {
+          min-height: 180px;
+          height: 180px;
+        }
+
+        .mission-content-compact {
+          gap: 25px;
+        }
+      }
+
       /* Courses Section */
       .courses-container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
+        width: 100%;
       }
 
       .course-card {
@@ -294,6 +673,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         transition: all 0.5s ease;
         position: relative;
+        width: 100%;
       }
 
       .course-video {
@@ -350,6 +730,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 30px;
+        width: 100%;
       }
 
       .work-card {
@@ -366,6 +747,7 @@
         text-align: center;
         padding: 20px;
         position: relative;
+        width: 100%;
       }
 
       .work-card::before {
@@ -397,6 +779,7 @@
         display: flex;
         align-items: center;
         gap: 50px;
+        width: 100%;
       }
 
       .why-us-image {
@@ -443,10 +826,85 @@
         font-size: 1.2rem;
       }
 
+      /*Placement Partner*/
+
+      .partners-section {
+        padding: 80px 5%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .partners-section .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 2.5rem;
+        color: var(--text);
+      }
+
+      .partners-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .partner-track {
+        display: flex;
+        width: max-content;
+        position: relative;
+        margin-bottom: 30px;
+      }
+
+      .partner-track-1 {
+        animation: scroll-left 40s linear infinite;
+      }
+
+      .partner-track-2 {
+        animation: scroll-right 35s linear infinite;
+      }
+
+      .partner-item {
+        padding: 15px 30px;
+        margin: 0 15px;
+        background: var(--accent);
+        border-radius: 8px;
+        white-space: nowrap;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+
+      .partner-item:hover {
+        background: var(--highlight);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes scroll-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes scroll-right {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
       /* Footer */
       footer {
         background: var(--secondary);
         padding: 60px 5% 30px;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .footer-content {
@@ -454,6 +912,7 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 40px;
         margin-bottom: 40px;
+        width: 100%;
       }
 
       .footer-column h3 {
@@ -617,12 +1076,40 @@
           padding: 8px 20px;
           font-size: 0.9rem;
         }
+
+        .form-box {
+          padding: 30px 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .partners-section {
+          padding: 60px 5%;
+        }
+
+        .partners-section .section-title {
+          font-size: 2rem;
+          margin-bottom: 40px;
+        }
+
+        .partner-item {
+          padding: 12px 20px;
+          margin: 0 10px;
+          font-size: 1rem;
+        }
+
+        .partner-track-1 {
+          animation: scroll-left 30s linear infinite;
+        }
+
+        .partner-track-2 {
+          animation: scroll-right 25s linear infinite;
+        }
       }
 
       @media (max-width: 576px) {
         .header-content h1 {
           font-size: 2rem;
-          margin-top: 20px;
         }
 
         .header-content p {
@@ -635,7 +1122,7 @@
         }
 
         .form-box {
-          padding: 30px 20px;
+          padding: 25px 15px;
         }
 
         .footer-content {
@@ -650,12 +1137,29 @@
         section {
           padding: 70px 5%;
         }
+
+        .form-container {
+          padding: 10px;
+        }
+      }
+
+      .partners-section .section-title {
+        font-size: 1.8rem;
+
+        .partner-item {
+          padding: 10px 15px;
+          margin: 0 8px;
+          font-size: 0.9rem;
+        }
+
+        .partner-track {
+          margin-bottom: 20px;
+        }
       }
 
       @media (max-width: 400px) {
         .header-content h1 {
           font-size: 1.8rem;
-          margin-top: 50px;
         }
 
         .courses-container {
@@ -665,6 +1169,20 @@
         .course-card {
           margin-bottom: 20px;
         }
+
+        .form-box {
+          padding: 20px 15px;
+        }
+      }
+      .partner-item {
+        padding: 8px 12px;
+        margin: 0 6px;
+        font-size: 0.85rem;
+      }
+
+      /* Prevent horizontal scroll */
+      .no-scroll {
+        overflow: hidden;
       }
     </style>
   </head>
@@ -673,14 +1191,6 @@
     <header>
       <div class="video-slider">
         <div class="video-slide active">
-          <video autoplay muted loop>
-            <source
-              src="https://www.pexels.com/download/video/34149284/"
-              type="video/mp4"
-            />
-          </video>
-        </div>
-        <div class="video-slide">
           <video autoplay muted loop>
             <source
               src="https://www.pexels.com/download/video/856997/"
@@ -696,11 +1206,19 @@
             />
           </video>
         </div>
+        <div class="video-slide">
+          <video autoplay muted loop>
+            <source
+              src="https://www.pexels.com/download/video/4990232/"
+              type="video/mp4"
+            />
+          </video>
+        </div>
         <div class="video-overlay"></div>
       </div>
 
       <nav>
-        <div class="logo">Arena</div>
+        <div class="logo">DesignEngine</div>
         <button class="enroll-btn" id="enrollBtn">Enroll Now</button>
       </nav>
 
@@ -791,6 +1309,108 @@
       </div>
     </div>
 
+    <!-- Our Mission Section -->
+    <section id="our-mission" class="mission-section-compact">
+      <div class="container">
+        <h2
+          class="section-title-center"
+          data-aos="fade-down"
+          data-aos-duration="800"
+        >
+          Our Mission
+        </h2>
+
+        <div class="mission-content-compact">
+          <div
+            class="mission-visual-compact"
+            data-aos="fade-right"
+            data-aos-duration="800"
+          >
+            <div class="visual-container-compact">
+              <div class="mission-image-compact">
+                <img
+                  src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                  alt="AVGC Creative Industry"
+                />
+                <div class="image-overlay-compact"></div>
+              </div>
+              <div class="floating-elements-compact">
+                <div class="element-compact element-1">
+                  <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="element-compact element-2">
+                  <i class="fas fa-film"></i>
+                </div>
+                <div class="element-compact element-3">
+                  <i class="fas fa-robot"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side - Text Content -->
+          <div
+            class="mission-text-compact"
+            data-aos="fade-left"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
+            <div class="text-content-wrapper-compact">
+              <div class="mission-statement-compact">
+                <p>
+                  To bridge the gap between education and employability in the
+                  <span class="highlight">AVGC</span> (Animation, Visual
+                  Effects, Gaming, and Comics) sector by combining industry-led
+                  curriculum, AI-driven creativity, and hands-on learning that
+                  leads to strong, portfolio-based career outcomes.
+                </p>
+              </div>
+
+              <div class="mission-features-compact">
+                <div
+                  class="feature-compact"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                >
+                  <div class="feature-icon-compact">
+                    <i class="fas fa-industry"></i>
+                  </div>
+                  <div class="feature-content-compact">
+                    <h3>Industry-Led</h3>
+                  </div>
+                </div>
+
+                <div
+                  class="feature-compact"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                >
+                  <div class="feature-icon-compact">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="feature-content-compact">
+                    <h3>AI-Driven</h3>
+                  </div>
+                </div>
+
+                <div
+                  class="feature-compact"
+                  data-aos="fade-up"
+                  data-aos-delay="500"
+                >
+                  <div class="feature-icon-compact">
+                    <i class="fas fa-hands"></i>
+                  </div>
+                  <div class="feature-content-compact">
+                    <h3>Hands-On</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Courses Section -->
     <section id="courses">
       <h2 class="section-title" data-aos="fade-up">Our Courses</h2>
@@ -799,7 +1419,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="100">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-hands-typing-on-a-laptop-51948-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -821,7 +1444,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="200">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-graph-and-statistics-software-51954-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -843,7 +1469,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="300">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-woman-holding-a-smartphone-and-typing-51952-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -865,7 +1494,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="400">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-graphic-designer-working-on-a-laptop-51949-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -887,7 +1519,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="100">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-developer-working-on-a-laptop-51947-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -906,7 +1541,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="200">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-woman-using-a-laptop-51951-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -928,7 +1566,10 @@
         <div class="course-card" data-aos="fade-up" data-aos-delay="300">
           <div class="course-video">
             <video autoplay muted loop>
-              <source src="" type="video/mp4" />
+              <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-business-woman-analyzing-data-51955-large.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
           <div class="course-content">
@@ -943,71 +1584,6 @@
             </p>
           </div>
         </div>
-
-        <!-- Course 8 -->
-        <div class="course-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="course-video">
-            <video autoplay muted loop>
-              <source src="" type="video/mp4" />
-            </video>
-          </div>
-          <div class="course-content">
-            <h3>Photography</h3>
-            <p>
-              Master camera techniques, composition, lighting and photo editing.
-            </p>
-          </div>
-          <div class="course-hover">
-            <p>
-              Capture stunning images and develop your unique photographic
-              style.
-            </p>
-          </div>
-        </div>
-
-        <!-- Course 9 -->
-        <div class="course-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="course-video">
-            <video autoplay muted loop>
-              <source src="" type="video/mp4" />
-            </video>
-          </div>
-          <div class="course-content">
-            <h3>Content Writing</h3>
-            <p>
-              Learn to create engaging content for websites, blogs and social
-              media.
-            </p>
-          </div>
-          <div class="course-hover">
-            <p>
-              Develop your writing skills and build a portfolio of published
-              work.
-            </p>
-          </div>
-        </div>
-
-        <!-- Course 10 -->
-        <div class="course-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="course-video">
-            <video autoplay muted loop>
-              <source src="" type="video/mp4" />
-            </video>
-          </div>
-          <div class="course-content">
-            <h3>Project Management</h3>
-            <p>
-              Master Agile, Scrum, and traditional project management
-              methodologies.
-            </p>
-          </div>
-          <div class="course-hover">
-            <p>
-              Lead successful projects from initiation to completion with
-              confidence.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1017,57 +1593,57 @@
       <div class="student-work-container">
         <!-- Work 1 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="student-name">Amit</div>
+          <div class="student-name">Amite</div>
           <div class="work-name">E-commerce Website</div>
         </div>
 
         <!-- Work 2 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="200">
           <div class="student-name">Sameer</div>
-          <div class="work-name">Graphic design</div>
+          <div class="work-name">Data Visualization Dashboard</div>
         </div>
 
         <!-- Work 3 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="300">
           <div class="student-name">Sandeep</div>
-          <div class="work-name">App design</div>
+          <div class="work-name">Mobile Fitness App</div>
         </div>
 
         <!-- Work 4 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="student-name">Gurpret</div>
+          <div class="student-name">Gurpreet</div>
           <div class="work-name">Brand Identity Design</div>
         </div>
 
         <!-- Work 5 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="100">
           <div class="student-name">Aryan</div>
-          <div class="work-name">VFX</div>
+          <div class="work-name">AI Chatbot Implementation</div>
         </div>
 
         <!-- Work 6 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="student-name">Shivam</div>
-          <div class="work-name">Social Media Post</div>
+          <div class="student-name">Arbaj</div>
+          <div class="work-name">Social Media Campaign</div>
         </div>
 
         <!-- Work 7 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="student-name">Arbaj</div>
-          <div class="work-name">Graphic Design</div>
+          <div class="student-name">Shivam</div>
+          <div class="work-name">Financial Analytics Tool</div>
         </div>
 
         <!-- Work 8 -->
         <div class="work-card" data-aos="fade-up" data-aos-delay="400">
           <div class="student-name">Shahwaj</div>
-          <div class="work-name">Website</div>
+          <div class="work-name">Portfolio Website</div>
         </div>
       </div>
     </section>
 
     <!-- Why Us Section -->
     <section id="why-us">
-      <h2 class="section-title" data-aos="fade-up">Why Choose Us</h2>
+      <h2 class="section-title" data-aos="fade-up">Why Choose DesignEngine</h2>
       <div class="why-us-container">
         <div class="why-us-image" data-aos="fade-right">
           <img
@@ -1111,14 +1687,132 @@
       </div>
     </section>
 
+    <section class="partners-section" data-aos="fade-up">
+      <div class="container">
+        <h2 class="section-title">Our Placement Partners</h2>
+        <div class="partners-container">
+          <!-- First Row - Scrolls Right to Left -->
+          <div class="partner-track partner-track-1">
+            <div class="partner-item">Boult Audio</div>
+            <div class="partner-item">Adda24/7</div>
+            <div class="partner-item">Blinkit</div>
+            <div class="partner-item">Care Health Insurance</div>
+            <div class="partner-item">Cosmic Kitchen pvt Ltd (choko la)</div>
+            <div class="partner-item">Social Codify</div>
+            <div class="partner-item">Zamun</div>
+            <div class="partner-item">RentOK</div>
+            <div class="partner-item">Mobisoft Labs</div>
+            <div class="partner-item">Aromatic Garden Essence</div>
+            <div class="partner-item">SPYNE</div>
+            <div class="partner-item">OneBlac</div>
+            <div class="partner-item">Hindustan Times</div>
+            <div class="partner-item">29 Media</div>
+            <div class="partner-item">The Minute Academy</div>
+            <div class="partner-item">The Cure stone</div>
+            <div class="partner-item">Ken Reasearch</div>
+            <div class="partner-item">Prop Future AI</div>
+            <div class="partner-item">BE Digitech</div>
+            <div class="partner-item">OnlyBigcars</div>
+            <div class="partner-item">BigStep Technology</div>
+            <div class="partner-item">Dropbox</div>
+            <div class="partner-item">Shopify</div>
+            <div class="partner-item">Stripe</div>
+            <div class="partner-item">GitHub</div>
+            <!-- Duplicate for seamless loop -->
+
+            <div class="partner-item">Boult Audio</div>
+            <div class="partner-item">Adda24/7</div>
+            <div class="partner-item">Blinkit</div>
+            <div class="partner-item">Care Health Insurance</div>
+            <div class="partner-item">Cosmic Kitchen pvt Ltd (choko la)</div>
+            <div class="partner-item">Social Codify</div>
+            <div class="partner-item">Zamun</div>
+            <div class="partner-item">RentOK</div>
+            <div class="partner-item">Mobisoft Labs</div>
+            <div class="partner-item">Aromatic Garden Essence</div>
+            <div class="partner-item">SPYNE</div>
+            <div class="partner-item">OneBlac</div>
+            <div class="partner-item">Hindustan Times</div>
+            <div class="partner-item">29 Media</div>
+            <div class="partner-item">The Minute Academy</div>
+            <div class="partner-item">The Cure stone</div>
+            <div class="partner-item">Ken Reasearch</div>
+            <div class="partner-item">Prop Future AI</div>
+            <div class="partner-item">BE Digitech</div>
+            <div class="partner-item">OnlyBigcars</div>
+            <div class="partner-item">BigStep Technology</div>
+            <div class="partner-item">Dropbox</div>
+            <div class="partner-item">Shopify</div>
+            <div class="partner-item">Stripe</div>
+            <div class="partner-item">GitHub</div>
+          </div>
+
+          <!-- Second Row - Scrolls Left to Right -->
+          <div class="partner-track partner-track-2">
+            <div class="partner-item">Dell</div>
+            <div class="partner-item">HP</div>
+            <div class="partner-item">Samsung</div>
+            <div class="partner-item">Sony</div>
+            <div class="partner-item">Nvidia</div>
+            <div class="partner-item">AMD</div>
+            <div class="partner-item">Qualcomm</div>
+            <div class="partner-item">Intel</div>
+            <div class="partner-item">Deloitte</div>
+            <div class="partner-item">Accenture</div>
+            <div class="partner-item">Infosys</div>
+            <div class="partner-item">TCS</div>
+            <div class="partner-item">Wipro</div>
+            <div class="partner-item">HCL</div>
+            <div class="partner-item">Capgemini</div>
+            <div class="partner-item">Cognizant</div>
+            <div class="partner-item">Tech Mahindra</div>
+            <div class="partner-item">Mindtree</div>
+            <div class="partner-item">L&T Infotech</div>
+            <div class="partner-item">Mphasis</div>
+            <div class="partner-item">Hexaware</div>
+            <div class="partner-item">Persistent</div>
+            <div class="partner-item">Zensar</div>
+            <div class="partner-item">Cyient</div>
+            <div class="partner-item">KPIT</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="partner-item">Dell</div>
+            <div class="partner-item">HP</div>
+            <div class="partner-item">Samsung</div>
+            <div class="partner-item">Sony</div>
+            <div class="partner-item">Nvidia</div>
+            <div class="partner-item">AMD</div>
+            <div class="partner-item">Qualcomm</div>
+            <div class="partner-item">Intel</div>
+            <div class="partner-item">Deloitte</div>
+            <div class="partner-item">Accenture</div>
+            <div class="partner-item">Infosys</div>
+            <div class="partner-item">TCS</div>
+            <div class="partner-item">Wipro</div>
+            <div class="partner-item">HCL</div>
+            <div class="partner-item">Capgemini</div>
+            <div class="partner-item">Cognizant</div>
+            <div class="partner-item">Tech Mahindra</div>
+            <div class="partner-item">Mindtree</div>
+            <div class="partner-item">L&T Infotech</div>
+            <div class="partner-item">Mphasis</div>
+            <div class="partner-item">Hexaware</div>
+            <div class="partner-item">Persistent</div>
+            <div class="partner-item">Zensar</div>
+            <div class="partner-item">Cyient</div>
+            <div class="partner-item">KPIT</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer>
       <div class="footer-content">
         <div class="footer-column" data-aos="fade-up">
           <h3>About Us</h3>
           <p>
-            Arena is a leading online education platform dedicated to providing
-            high-quality courses to learners worldwide.
+            DesignEngine is a leading online education platform dedicated to
+            providing high-quality courses to learners worldwide.
           </p>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -1136,9 +1830,12 @@
         </div>
         <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
           <h3>Contact Info</h3>
-          <p><i class="fas fa-map-marker-alt"></i> Western road Saket, Delhi</p>
-          <p><i class="fas fa-phone"></i> +91 999 123-4567</p>
-          <p><i class="fas fa-envelope"></i> arenainfor@123.com</p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> 123 Education Street, Learn
+            City
+          </p>
+          <p><i class="fas fa-phone"></i> +1 555 123-4567</p>
+          <p><i class="fas fa-envelope"></i> info@DesignEngine.com</p>
         </div>
         <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
           <h3>Newsletter</h3>
@@ -1153,7 +1850,7 @@
         </div>
       </div>
       <div class="copyright">
-        <p>&copy; 2025 Arena. All rights reserved.</p>
+        <p>&copy; 2025 DesignEngine. All rights reserved.</p>
       </div>
     </footer>
 
@@ -1188,16 +1885,19 @@
       // Open enroll form
       enrollBtn.addEventListener("click", () => {
         enrollForm.classList.add("active");
+        document.body.classList.add("no-scroll");
       });
 
       // Close enroll form
       closeEnroll.addEventListener("click", () => {
         enrollForm.classList.remove("active");
+        document.body.classList.remove("no-scroll");
       });
 
       // Close login form
       closeLogin.addEventListener("click", () => {
         loginForm.classList.remove("active");
+        document.body.classList.remove("no-scroll");
       });
 
       // Switch to login form
@@ -1216,9 +1916,11 @@
       window.addEventListener("click", (e) => {
         if (e.target === enrollForm) {
           enrollForm.classList.remove("active");
+          document.body.classList.remove("no-scroll");
         }
         if (e.target === loginForm) {
           loginForm.classList.remove("active");
+          document.body.classList.remove("no-scroll");
         }
       });
 
@@ -1243,7 +1945,44 @@
       window.addEventListener("load", () => {
         setTimeout(() => {
           enrollForm.classList.add("active");
+          document.body.classList.add("no-scroll");
         }, 1000);
+      });
+
+      //Mision section
+      // Number counting animation for stats
+      document.addEventListener("DOMContentLoaded", function () {
+        const statNumbers = document.querySelectorAll(".stat-number");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const statNumber = entry.target;
+                const target = parseInt(statNumber.getAttribute("data-count"));
+                const duration = 2000; // 2 seconds
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const timer = setInterval(() => {
+                  current += step;
+                  if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                  }
+                  statNumber.textContent = Math.floor(current);
+                }, 16);
+
+                observer.unobserve(statNumber);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        statNumbers.forEach((stat) => {
+          observer.observe(stat);
+        });
       });
     </script>
   </body>
