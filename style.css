@@ -309,19 +309,7 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
   box-shadow: 0 8px 25px rgba(0, 180, 219, 0.4);
 }
 
-/* Responsive design */
-@media (max-width: 576px) {
-  .enroll-form-box {
-    width: 350px;
-    min-height: 400px;
-    padding: 25px 20px;
-  }
-  
-  .enroll-form-box .form-title {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-  }
-}
+
 
       /* Light Simple Login Form */
       .login-form-box {
@@ -411,15 +399,15 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
         background: white;
         box-shadow: 0 0 0 3px rgba(0, 180, 219, 0.1);
       }
-
+      
+/*
       .form-group select {
-        appearance: none;
-        background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+        background: url("img_bank/loginform.jpeg");
         background-repeat: no-repeat;
         background-position: right 16px center;
         background-size: 12px;
       }
-
+*/
       .submit-btn {
         width: 100%;
         background: linear-gradient(135deg, #00b4db, #0083b0);
@@ -1669,6 +1657,7 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
 
         .form-box {
           padding: 25px 15px;
+          margin: -1px;
         }
 
         .footer-content {
@@ -1687,7 +1676,18 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
         .form-container {
           padding: 10px;
         }
-      }
+        
+  .enroll-form-box {
+    width: 350px;
+    min-height: 400px;
+    padding: 25px 20px;
+  }
+  
+  .enroll-form-box .form-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+}
 
       /* Prevent horizontal scroll */
       .no-scroll {
