@@ -241,12 +241,11 @@
   /* Enroll Form with Background Image */
  
   .enroll-form-box {
-  background: url("img_bank/loginform.jpeg");
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("img_bank/loginform.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   
@@ -313,8 +312,10 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
 
       /* Light Simple Login Form */
       .login-form-box {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
+        background:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("img_bank/loginform.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       }
@@ -322,7 +323,7 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
       .login-form-box .form-title {
         font-size: 2rem;
         margin-bottom: 25px;
-        color: #2c3e50;
+        color: #e6460d;
       }
 
       .login-form-box .form-group input {
@@ -332,11 +333,11 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
 
       .login-form-box .form-group input:focus {
         background: white;
-        border-color: #00b4db;
+        border-color: #01a7cc;
       }
 
       .login-form-box .submit-btn {
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: linear-gradient(135deg, #df1f1f, #e6460d);
         margin-top: 15px;
       }
 
@@ -350,8 +351,8 @@ background: linear-gradient(135deg, #df1f1f, #e6460d);
         right: 20px;
         background: none;
         border: none;
-        font-size: 2rem;
-        color: #666;
+        font-size: 2.2rem;
+        color: #000;
         cursor: pointer;
         transition: color 0.3s ease;
         z-index: 10;
